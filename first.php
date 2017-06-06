@@ -4,15 +4,17 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Number to word coversion</title>
+	</head>
 <style>
 	body {
 		background-image: url("https://s-media-cache-ak0.pinimg.com/originals/4c/44/ff/4c44ffb3128ea2386e94675af604a8e4.jpg");
-		padding-top:250px
+		padding-top:10%;
 		padding-bottom:250px;
 		padding-right:250px;
 		padding-left:250px;	
 		color:white ;
 		text-align:center;	
+		font-size:20px;
 		}	
 	input[type=text] {
 		width: 50%;
@@ -20,7 +22,7 @@
 		margin: 8px 0;
 		box-sizing: border-box;
 		border: none;
-		border-bottom: 1.60px solid white ; 
+		border-bottom: 1.60px solid white ;
 	}	
 	button[type='submit'] {
 		display: block;
@@ -30,54 +32,43 @@
 	.button {
 		background-color: #4CAF50;
 		border: none;
-		color:red;
-		padding: 15px 32px;
 		text-align: center;
 		text-decoration: none;
 		display: inline-block;
 		font-size: 16px;
-		margin: 4px 2px;
 		cursor: pointer;
-
-	}
-	.color {
-		font-size:20px;
-		color:white ;
-		padding-top: 50px;
-		padding-right: 30px;
-		padding-bottom: 50px;
-		padding-left: 80px;
-		font-weight: bold;
-
-		}
-	p.solid {
-	border-style: solid;
-		border-width: 2px;
-		}	
-	p.test {
-		width: 11em; 
-		border: 1px solid white;
-		word-wrap: break-word;
+		padding: 12px 20px;
+		margin: 8px 0;
 	}	
-	</style>
-</head>
+	p.padding{
+		padding-top:2%;
+		padding:bottom:5%;
+	
+	}
+	
+</style>	
 <body>
-	<p class ="test">
-		<form method="post" action=" " >
-			<label>Enter a Number:</label>
-			<input type="text" name="num" placeholder="Enter a number"/></br></br>
-			<div class="button">
-				<button type="submit" class="submit">Submit</button>
-			</div>
-	    </form>
-   </p>
+	<form method="post" action=" " >
+		<label>Enter a Number:</label>
+		<input type="text" name="num" placeholder="Enter a number">
+		<div class="button">
+			<button type="submit" class="submit">Submit</button>
+		</div>
+		</br>
+		<?php $num = $_POST['num'];?>
+		<p class="padding">
+			<label>Final No:</label></p>
+		<?php echo trim($num);?></br>
+		<p class="padding">
+			<label>output In Words:</label></br></p>
+			<?php echo ''.ucwords(convertNumber($num)); ?>
+		
+	</form>
 </body>
 </html>
+
 <?php
-	$num = $_POST['num'];
-	echo "<div class='color'>Final No:</br>".trim($num)."</div>";
-	echo '<center><h2>output In Words</h2>'.ucwords(convertNumber($num))."</center>";
-	function convertNumber($num)
+function convertNumber($num)
 	{
 		list($num, $dec) = explode(".", $num);
 		$output = "";
