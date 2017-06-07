@@ -44,10 +44,10 @@
 		padding-top:2%;
 		padding:bottom:5%;
 	
-	}
-	
+	}	
 </style>	
 <body>
+	<h1>Number To Word Conversion</h1>
 	<form method="post" action=" " >
 		<label>Enter a Number:</label>
 		<input type="text" name="num" placeholder="Enter a number">
@@ -55,18 +55,25 @@
 			<button type="submit" class="submit">Submit</button>
 		</div>
 		</br>
-		<?php $num = $_POST['num'];?>
 		<p class="padding">
-			<label>Final No:</label></p>
-		<?php echo trim($num);?></br>
-		<p class="padding">
-			<label>output In Words:</label></br></p>
-			<?php echo ''.ucwords(convertNumber($num)); ?>
-		
+			<?php 
+				$num = NULL;
+				$num = $_POST['num'];
+				if (!filter_var($num, FILTER_VALIDATE_INT) === true)
+				{	
+					echo trim($num)."</br>";				
+  					echo "Please Enter Valid integer";
+                }
+				else
+				{	
+					echo "Final No:".trim($num)."</br>";				
+			 		echo '</br>Output:</br>'.ucwords(convertNumber($num));
+				}
+		?>
+		</p>
 	</form>
 </body>
 </html>
-
 <?php
 function convertNumber($num)
 	{
@@ -82,11 +89,11 @@ function convertNumber($num)
 			$output = "positive ";
 			$num = ltrim($num, "+");
 		}
-		if($num{0} == "0")
+		if($num{1} == "0")
 		{
 			$output .= "zero";
 		}
-		else
+			else
 		{
 			$num = str_pad($num, 36, "0", STR_PAD_LEFT);
 			$group = rtrim(chunk_split($num, 3, " "), " ");
